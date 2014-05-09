@@ -1,0 +1,100 @@
+ /$$$$$$$$           /$$   /$$                         /$$
+| $$_____/          |__/  | $$                        | $$
+| $$        /$$$$$$  /$$ /$$$$$$    /$$$$$$   /$$$$$$$| $$$$$$$
+| $$$$$    /$$__  $$| $$|_  $$_/   /$$__  $$ /$$_____/| $$__  $$
+| $$__/   | $$  \ $$| $$  | $$    | $$$$$$$$| $$      | $$  \ $$
+| $$      | $$  | $$| $$  | $$ /$$| $$_____/| $$      | $$  | $$
+| $$$$$$$$| $$$$$$$/| $$  |  $$$$/|  $$$$$$$|  $$$$$$$| $$  | $$
+|________/| $$____/ |__/   \___/   \_______/ \_______/|__/  |__/
+          | $$
+          | $$
+          |__/
+
+
+       /$$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$
+      | $$__  $$ /$$__  $$ /$$__  $$| $$_  $$_  $$ /$$__  $$
+      | $$  \ $$| $$  \ $$| $$  \__/| $$ \ $$ \ $$| $$$$$$$$
+      | $$  | $$| $$  | $$| $$      | $$ | $$ | $$| $$_____/
+      | $$  | $$|  $$$$$$/| $$      | $$ | $$ | $$|  $$$$$$$
+      |__/  |__/ \______/ |__/      |__/ |__/ |__/ \_______/
+
+
+
+      /*********************************************\
+      ** Made by duponc_j@epitech.net		   **
+      **                                           **
+      ** Modified by MAILLOT Flavien		   **
+      ** E-mail flavien.maillot@epitech.eu         **
+      **                                           **
+      ** Version 1.2.2                             **
+      **                                           **
+      ** Date 2014                                 **
+      \*********************************************/
+
+
+|*| COMMENT L'UTILISER
+
+Exécuter le fichier norme_auto.sh sans paramètres.
+
+	 ./norme_auto.sh
+
+                     OU
+
+Exécuter le fichier norme.py avec ses paramètres:
+
+	 python norme.py <files to scan> [-option]
+
+	 	-verbose: affiche les messages impossible d\'ouvrir
+		-nocheat: desactive la detection de la triche
+	 	-score: affiche le nombre de faute de norme
+	 	-libc: active la verification des fonctions de la libc
+	 	-malloc: desactive le controle du malloc
+	 	-printline: affiche la ligne provoquant une erreur
+	 	-return: active verifier le retour des fonctions (return ;)
+	 	-comment: ne pas verifier les commentaire
+
+
+|*| CONSEILS
+
+1- Mettre la moulinette dans un dossier moulinette dans votre /home/user
+
+2- Ajouter dans le .bashrc
+   alias norme='cp ~/moulinette/norme.py ./; cp ~/moulinette/norme_auto.sh ./'
+   alias norme_rm="rm -vf norme.py norme_auto.sh"
+
+3- Aller dans le dossier de travail puis saisir dans le terminal :
+   $> norme
+   $> ./norme_auto
+   $> norme_rm
+
+
+|*| BUGS & SUGGESTIONS
+
+Merci de signaler les bugs et d'envoyer vos suggestions à flavien.maillot@epitech.eu
+
+
+|*| VERSION 1.2.2 :
+
+- Tabulations dans les déclarations
+- Sauts de lignes après les blocs de déclarations
+- Fichiers temporaires et fichiers de sauvegardes
+- Multiple déclaration sur une même ligne
+- Coloration des erreurs
+- Affiche qu'une fois le message des fonctions de plus de 25 lignes
+- Prise en compte des nouveaux types (t_, static, ssize_t...)
+
+|*| VERSION 1.2.1 :
+
+- Fonctions de plus de 25 lignes
+- Mauvais header
+- Fonctions interdites
+- Nombre de fonctions par fichier
+- Espace manquant après mot clé
+- Double retour à la ligne
+- Ligne de plus de 80 caractères
+- Plus de 4 paramètres pour une fonction
+- Commentaire dans le code
+- Déclaration et affectation sur la même ligne
+- Norme Makefile
+- Retour à la ligne manquant entre deux fonctions
+- Verification malloc
