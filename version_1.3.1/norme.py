@@ -18,7 +18,7 @@ ce bug vous arrive envoyez moi un e-mail.
 
 import sys,re,os,pwd,urllib2
 
-version = "1.3.0"
+version = "1.3.1"
 
 class norme:
     def __init__(self):
