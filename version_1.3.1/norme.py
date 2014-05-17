@@ -18,7 +18,7 @@ ce bug vous arrive envoyez moi un e-mail.
 
 import sys,re,os,pwd,urllib2
 
-version = "1.3.1"
+version = "1.3.0"
 
 class norme:
     def __init__(self):
@@ -478,7 +478,7 @@ def check_version():
             return True
         else:
             print "\033[0;31;40mMauvaise version du script.\nTéléchargez la dernière version : \033[0;33;40mperso.eptich.net/~maillo_a/moulinette/\033[0m"
-            print "Ou ./norme_auto -update"
+            print "\033[0;31;40mOu \033[0;33;40m./norme_auto -update\033[0m"
             print "\033[0;31;40mVersion possédée : \033[0;33;40m"+ version +"\033[0;31;40m\nVersion actuelle : \033[0;33;40m"+ buf +"\033[0m"
             return False
 
