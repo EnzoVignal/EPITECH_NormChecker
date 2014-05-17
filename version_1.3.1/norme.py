@@ -5,7 +5,7 @@
 #
 # Modified by flavien.maillot@epitech.eu
 #
-# Version: 1.3.0
+# Version: 1.3.1
 # Annee 2014
 
 '''
@@ -18,7 +18,7 @@ ce bug vous arrive envoyez moi un e-mail.
 
 import sys,re,os,pwd,urllib2
 
-version = "1.3.0"
+version = "1.3.1"
 
 class norme:
     def __init__(self):
