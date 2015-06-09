@@ -1,0 +1,15 @@
+EPI-NORME
+---------------
+EPITECH's norme checker.
+In your project folder, just run "norme".
+
+Installation
+---------------
+
+Run "install.sh".
+
+WARNING
+---------------
+I am not responsible of any thing which happen with this script.
+If you run "norme" with a file path, it will delete your file.
+You've been warned.

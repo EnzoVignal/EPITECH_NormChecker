@@ -47,7 +47,7 @@ then
 	echo -e "Crée par maillo_a\033[0m"
 	echo -e "\033[0;33;40mPréparation du test de malloc, veuillez patienter..."
 	touch norme_malloc.c
-	python $norme $optionm
+	python3 $norme $optionm
 	gcc -fPIC norme_malloc.c -shared -o libmymalloc.so
 	echo -e "Exécution du programme...\033[0m\n"
 	trap '' 11
@@ -73,26 +73,26 @@ then
 	fi
 	if [ "${1}" == "-version" ]
         then
-            python $norme -version
+            python2 $norme -version
             exit
         fi
     fi
 fi
 echo -e "\033[0;32;40m------------------------------ Checking the norme TWICE ------------------------------"
-echo -e "Modifié par maillo_a\033[0m"
+echo -e "Modifié par pirez_l/duponc_j\033[0m"
 echo -e "\033[0;36;40mChecking *.c files...\033[0m"
 if [ $1 ]
 then
     option="$option $1"
 fi
 files=`find ./ -type f \( -name "*.c" ! -name "*op.c" \)`
-python $norme $files $option
+python2 $norme $files $option
 echo -e "\033[0;36;40m\nChecking *.h files...\033[0m"
 files=`find ./ -type f -name "*.h"`
-python $norme $files $option
+python2 $norme $files $option
 echo -e "\033[0;36;40m\nChecking Makefiles...\033[0m"
 files=`find ./ -type f -name "Makefile"`
-python $norme $files $option
+python2 $norme $files $option
 tempfile=$(find ./ -type f -name "*~" | wc -l)
 if [ $tempfile != 0 ]
 then

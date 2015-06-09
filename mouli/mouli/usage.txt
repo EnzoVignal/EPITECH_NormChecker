@@ -34,9 +34,18 @@
 
 |*| COMMENT L'UTILISER
 
-Exécuter le fichier norme_auto.sh sans paramètres.
+I/ Pour vérifier la norme :
+
+Exécuter le fichier norme_auto.sh.
 
 	 ./norme_auto.sh
+	 ./norme_auto.sh -cheat
+	 ./norme_auto.sh -version
+	 ./norme_auto.sh -update
+
+	 -cheat   : active la détection de la triche
+	 -version : vérifie si vous avez la dernière version
+	 -update  : télécharge et installe la dernière version de la moulinette
 
                      OU
 
@@ -44,14 +53,23 @@ Exécuter le fichier norme.py avec ses paramètres:
 
 	 python norme.py <files to scan> [-option]
 
-	 	-verbose: affiche les messages impossible d\'ouvrir
-		-nocheat: desactive la detection de la triche
-	 	-score: affiche le nombre de faute de norme
-	 	-libc: active la verification des fonctions de la libc
-	 	-malloc: desactive le controle du malloc
+	 	-verbose : affiche les messages impossible d\'ouvrir
+		-cheat   : active la détection de la triche
+	 	-score	 : affiche le nombre de faute de norme
+	 	-libc	 : active la verification des fonctions de la libc
+	 	-malloc	 : desactive le controle du malloc
 	 	-printline: affiche la ligne provoquant une erreur
-	 	-return: active verifier le retour des fonctions (return ;)
-	 	-comment: ne pas verifier les commentaire
+	 	-return	 : active verifier le retour des fonctions (return ;)
+	 	-comment : ne pas verifier les commentaire
+		-version : vérifie si vous avez la dernière version
+
+II/ Pour vérifier les malloc
+
+Exécuter le fichier norme_auto.sh avec en paramètre le nom de programme.
+
+	 ./norme_auto.sh nom_executable
+
+
 
 
 |*| CONSEILS
@@ -68,10 +86,31 @@ Exécuter le fichier norme.py avec ses paramètres:
    $> norme_rm
 
 
+
+
 |*| BUGS & SUGGESTIONS
 
 Merci de signaler les bugs et d'envoyer vos suggestions à flavien.maillot@epitech.eu
 
+
+
+
+|*| VERSION 1.3.1 :
+- Correction de la fonction d'indentation
+
+|*| VERSION 1.3.0 :
+- Détection de ZWNBS
+- Amélioration des détections pour les retours à la ligne
+- Amélioration des détections pour les tabulations après les types
+- Mise en place d'un système avancé de vérification des malloc
+- Détection de la triche utilisateur (nouvelle options)
+- Vérification de l'indentation dans toutes les fonctions
+- Système de vérification de la version du script
+- Mise en place d'un système de mise à jour semi-manuel.
+- Modification de l'option -help
+- Détection des fichiers objets
+- Mise en place d'un encodage des caractères
+- Correction de messages d'erreur
 
 |*| VERSION 1.2.2 :
 
@@ -97,4 +136,3 @@ Merci de signaler les bugs et d'envoyer vos suggestions à flavien.maillot@epite
 - Déclaration et affectation sur la même ligne
 - Norme Makefile
 - Retour à la ligne manquant entre deux fonctions
-- Verification malloc

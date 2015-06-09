@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # Made by duponc_j@epitech.net
 #
 # Modified by flavien.maillot@epitech.eu
 #
-# Version: 1.3.0
+# Version: 1.3.1
 # Annee 2014
 
 '''
@@ -18,7 +18,7 @@ ce bug vous arrive envoyez moi un e-mail.
 
 import sys,re,os,pwd,urllib2
 
-version = "1.3.0"
+version = "1.3.1"
 
 class norme:
     def __init__(self):
@@ -42,7 +42,7 @@ class norme:
         self.declaration_jump = 0
         self.is_func = 0
         self.typedef = 0
-        self.indent = [0, 0]
+        self.indent = [0, 0, 0]
         self.intype = []
         if self.verbose == 1:
             print "Scan",self.file
@@ -84,12 +84,19 @@ class norme:
     def check_indent_line(self):
         if (self.line[:1] == '\n'):
             return True
+        if (self.indent[0] == 0 and self.indent[1] == 0):
+            return False
         p = re.compile('^([\t]{'+ str(self.indent[0]) +'}[ ]{'+ str(self.indent[1]) +'})(?![ \t])')
         test = re.search(p, self.line)
         if test is None:
+            if self.indent[2] != 0:
+                self.indent[2] +=  self.line.count('(')
+                self.indent[2] -=  self.line.count(')')
+                return True
             msg = 'Erreur d\'indentation, il doit y avoir ' + str(self.indent[0]) + ' tabulation(s) et ' + str(self.indent[1]) + ' espace(s)'
             self.print_error(msg)
             self.note += 1
+        return False
 
     def add_space_or_tab(self):
         if (self.indent[1] + 2 > 6):
@@ -121,13 +128,16 @@ class norme:
             else:
                 self.intype.pop()
                 self.remove_space_or_tab()
-        self.check_indent_line()
+        if self.check_indent_line() == True:
+            return True
         if (self.indent[0] != 0 and self.indent[1] != 0):
             if is_close_brace(self.line) == True:
                 self.intype.pop()
                 self.remove_space_or_tab()
                 return True
         if is_indent_key(self.line) == True:
+            self.indent[2] = self.line.count('(')
+            self.indent[2] -= self.line.count(')')
             self.intype.append(1)
             self.add_space_or_tab()
             return True
@@ -427,7 +437,8 @@ def is_indent_key(line):
     p = re.compile('^([ \t]+)(if|else|while)+(.*)')
     test = re.search(p, line)
     if test:
-        return True
+        if (line[-2:-1] != ';'):
+            return True
     return False
 
 def is_open_brace(line):
@@ -467,7 +478,7 @@ def check_version():
             return True
         else:
             print "\033[0;31;40mMauvaise version du script.\nTéléchargez la dernière version : \033[0;33;40mperso.eptich.net/~maillo_a/moulinette/\033[0m"
-            print "Ou ./norme_auto -update"
+            print "\033[0;31;40mOu \033[0;33;40m./norme_auto -update\033[0m"
             print "\033[0;31;40mVersion possédée : \033[0;33;40m"+ version +"\033[0;31;40m\nVersion actuelle : \033[0;33;40m"+ buf +"\033[0m"
             return False
 
