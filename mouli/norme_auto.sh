@@ -85,13 +85,13 @@ if [ $1 ]
 then
     option="$option $1"
 fi
-files=`find ./ -type f \( -name "*.c" ! -name "*op.c" \)`
+files=`find ./ -type f \( -name "*.c" ! -name "*op.c" \) -exec echo {} \; | sed 's/ /\\ /g'`
 python2 $norme $files $option
 echo -e "\033[0;36;40m\nChecking *.h files...\033[0m"
-files=`find ./ -type f -name "*.h"`
+files=`find ./ -name "*.h" -exec echo {} \; | sed 's/ /\\ /g'`
 python2 $norme $files $option
 echo -e "\033[0;36;40m\nChecking Makefiles...\033[0m"
-files=`find ./ -type f -name "Makefile"`
+files=`find ./ -type f -name "Makefile" -exec echo {} \; | sed 's/ /\\ /g'`
 python2 $norme $files $option
 tempfile=$(find ./ -type f -name "*~" | wc -l)
 if [ $tempfile != 0 ]
