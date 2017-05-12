@@ -114,58 +114,64 @@ class norme:
             self.indent[1] -= 2
 
     def check_indent(self):
-        if is_close_brace(self.line) == True:
-            if (len(self.intype) > 1):
-                if (self.intype[-1] != 2):
-                    while (self.intype[-1] != 2):
-                        self.remove_space_or_tab()
-                        self.intype.pop()
-                    self.remove_space_or_tab()
-                    self.intype.pop()
-                else:
-                    self.intype.pop()
-                    self.remove_space_or_tab()
-            else:
-                self.intype.pop()
-                self.remove_space_or_tab()
-        if self.check_indent_line() == True:
-            return True
-        if (self.indent[0] != 0 and self.indent[1] != 0):
-            if is_close_brace(self.line) == True:
-                self.intype.pop()
-                self.remove_space_or_tab()
-                return True
-        if is_indent_key(self.line) == True:
-            self.indent[2] = self.line.count('(')
-            self.indent[2] -= self.line.count(')')
-            self.intype.append(1)
-            self.add_space_or_tab()
-            return True
-        if is_open_brace(self.line) == True:
-            self.intype.append(2)
-            self.add_space_or_tab()
-            return True
-        if (len(self.intype) > 1):
-            if (self.intype[-1] != 2):
-                while (self.intype[-1] != 2):
-                    self.remove_space_or_tab()
-                    self.intype.pop()
+    	try:
+	        if is_close_brace(self.line) == True:
+	            if (len(self.intype) > 1):
+	                if (self.intype[-1] != 2):
+	                    while (self.intype[-1] != 2):
+	                        self.remove_space_or_tab()
+	                        self.intype.pop()
+	                    self.remove_space_or_tab()
+	                    self.intype.pop()
+	                else:
+	                    self.intype.pop()
+	                    self.remove_space_or_tab()
+	            else:
+	                self.intype.pop()
+	                self.remove_space_or_tab()
+	        if self.check_indent_line() == True:
+	            return True
+	        if (self.indent[0] != 0 and self.indent[1] != 0):
+	            if is_close_brace(self.line) == True:
+	                self.intype.pop()
+	                self.remove_space_or_tab()
+	                return True
+	        if is_indent_key(self.line) == True:
+	            self.indent[2] = self.line.count('(')
+	            self.indent[2] -= self.line.count(')')
+	            self.intype.append(1)
+	            self.add_space_or_tab()
+	            return True
+	        if is_open_brace(self.line) == True:
+	            self.intype.append(2)
+	            self.add_space_or_tab()
+	            return True
+	        if (len(self.intype) > 1):
+	            if (self.intype[-1] != 2):
+	                while (self.intype[-1] != 2):
+	                    self.remove_space_or_tab()
+	                    self.intype.pop()
+    	except:
+    		pass
 
     def check_virgule(self):
         if is_commented(self.line) == False:
             n = 0
             quote = 0
-            while self.line[n] != '\n':
-                if self.line[n] == '\'' or self.line[n] == '"' and self.line[n - 1] != '\\':
-                    if quote:
-                        quote = 0
-                    else:
-                        quote = 1
-                if (self.line[n] == ';' or self.line[n] == ',') and quote == 0:
-                    if self.line[n + 1] != ' ' and self.line[n + 1] != '\n':
-                        self.note += 1
-                        self.print_error('Point-virgule ou virgule mal placé')
-                n = n + 1
+            try:
+	            while self.line[n] != '\n':
+	                if self.line[n] == '\'' or self.line[n] == '"' and self.line[n - 1] != '\\':
+	                    if quote:
+	                        quote = 0
+	                    else:
+	                        quote = 1
+	                if (self.line[n] == ';' or self.line[n] == ',') and quote == 0:
+	                    if self.line[n + 1] != ' ' and self.line[n + 1] != '\n':
+	                        self.note += 1
+	                        self.print_error('Point-virgule ou virgule mal placé')
+	                n = n + 1
+            except:
+            	pass
 
 
     def check_nbchar(self):
@@ -276,19 +282,22 @@ class norme:
     def check_operateur(self, op):
         n = 0
         quote = 0
-        while self.line[n] != '\n':
-            if self.line[n] == '\'' or self.line[n] == '"' and self.line[n - 1] != '\\':
-                if quote:
-                    quote = 0
-                else:
-                    quote = 1
-            if (self.line[n] == op) and quote == 0:
-                if self.line[n + 1] != ' ' and self.line[n + 1] != ';' and self.line[n + 1] != '=' and self.line[n + 1] != '\n':
-                    if self.line[n - 1] != op and self.line[n + 1] != op:
-                        msg = 'Operateur %c mal placé' % op
-                        self.print_error(msg)
-                        self.note += 1
-            n = n + 1
+        try:
+	        while self.line[n] != '\n':
+	            if self.line[n] == '\'' or self.line[n] == '"' and self.line[n - 1] != '\\':
+	                if quote:
+	                    quote = 0
+	                else:
+	                    quote = 1
+	            if (self.line[n] == op) and quote == 0:
+	                if self.line[n + 1] != ' ' and self.line[n + 1] != ';' and self.line[n + 1] != '=' and self.line[n + 1] != '\n':
+	                    if self.line[n - 1] != op and self.line[n + 1] != op:
+	                        msg = 'Operateur %c mal placé' % op
+	                        self.print_error(msg)
+	                        self.note += 1
+	            n = n + 1
+        except:
+	    	pass
 
     def check_typedef(self):
         if self.line[:7] == "typedef":
